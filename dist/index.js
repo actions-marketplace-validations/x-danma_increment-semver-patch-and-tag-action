@@ -9693,9 +9693,12 @@ try {
   console.log(`Hello ${nameToGreet}!`);
 
   const ref = core.getInput('ref') 
-  const tag = core.getInput('tag-name')
+  const tagName = core.getInput('tag-name')
+  const tag = core.getInput("tag")
+  
   console.log(`Ref : ${ref}!`);
-  console.log(`Tag : ${tag}!`);
+  console.log(`tagName : ${tagName}!`);
+  console.log(`tag : ${tag}!`);
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
