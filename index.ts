@@ -8,7 +8,7 @@ try {
   const nameToGreet = Core.getInput('who-to-greet');
   const githubToken = Core.getInput('GITHUB_TOKEN');
   const repositoryName = Core.getInput('repositoryName');
-  const repositoryOwner = Core.getInput('owner');
+  const repositoryOwner = Core.getInput('repositoryOwner');
   const sha = Core.getInput('sha');
   console.log(`Hello ${nameToGreet}!`);
   console.log(`repositoryName ${repositoryName}!`);

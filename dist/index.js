@@ -11817,7 +11817,7 @@ try {
     const nameToGreet = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('who-to-greet');
     const githubToken = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('GITHUB_TOKEN');
     const repositoryName = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('repositoryName');
-    const repositoryOwner = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('owner');
+    const repositoryOwner = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('repositoryOwner');
     const sha = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('sha');
     console.log(`Hello ${nameToGreet}!`);
     console.log(`repositoryName ${repositoryName}!`);
