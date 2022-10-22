@@ -29,3 +29,7 @@ uses: actions/hello-world-javascript-action@v1.1
 with:
   who-to-greet: 'Mona the Octocat'
 ```
+
+## development
+
+Don't forget to run `ncc build index.ts --license licenses.txt`
