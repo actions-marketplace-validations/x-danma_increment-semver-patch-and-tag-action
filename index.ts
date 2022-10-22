@@ -1,9 +1,7 @@
 import *  as Core from '@actions/core';
-import * as Github from '@actions/github';
 import { Octokit } from "@octokit/rest";
 
 try {
-  // `who-to-greet` input defined in action metadata file
   console.log(`Hello! Lets begin autobumping tags :)`);
   const githubToken = Core.getInput('GITHUB_TOKEN');
   const repositoryName = Core.getInput('repositoryName');
