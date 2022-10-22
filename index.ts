@@ -22,8 +22,10 @@ try {
     owner: 'x-danma',
     repo: repositoryName
   })
+  console.log("tokens:" ,tokens);
+
   const firstTag = tokens.data[0].name.split('.');
-  console.log(firstTag);
+  console.log("firstTag:" ,firstTag);
 
   const major = firstTag[0];
   const minor = firstTag[1];

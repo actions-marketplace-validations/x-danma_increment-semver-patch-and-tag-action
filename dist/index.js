@@ -11829,8 +11829,9 @@ try {
         owner: 'x-danma',
         repo: repositoryName
     });
+    console.log("tokens:", tokens);
     const firstTag = tokens.data[0].name.split('.');
-    console.log(firstTag);
+    console.log("firstTag:", firstTag);
     const major = firstTag[0];
     const minor = firstTag[1];
     const feature = firstTag[2];
@@ -11840,13 +11841,11 @@ try {
     const time = (new Date()).toTimeString();
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("time", time);
     // https://docs.github.com/en/rest/git/refs#create-a-reference
-    const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/tags', {
+    const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
         owner: 'x-danma',
         repo: repositoryName,
-        tag: newTag,
-        message: 'Autobump feature version',
-        object: sha,
-        type: 'commit'
+        ref: `refs/tags/${newTag}`,
+        sha
     });
     console.log('new Tag was created, response:', createTagResponse);
     // Get the JSON webhook payload for the event that triggered the workflow
