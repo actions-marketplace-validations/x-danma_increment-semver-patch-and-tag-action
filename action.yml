@@ -1,5 +1,5 @@
-name: 'Autobump patch version and tag'
-description: 'Takes repo sha and creates a new tag with increased patch version. Excepts SemVer X.Y.Z'
+name: 'Increment SemVer Patch Version and Tag'
+description: 'Creates a new tag with increased patch version. Expects SemVer X.Y.Z'
 branding:
   icon: 'play'
   color: 'purple'
@@ -18,8 +18,8 @@ inputs:
     required: true
 
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  newTag: # id of output
+    description: 'The new tag that was generated'
 runs:
   using: 'node16'
   main: 'dist/index.js'

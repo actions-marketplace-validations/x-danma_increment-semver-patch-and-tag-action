@@ -1,6 +1,6 @@
-# Hello world javascript action
+# Increment SemVer Patch Version and Tag
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action will increment the patch version from your previous tags and create a tag ref to your commit.
 
 ## Inputs
 
@@ -29,14 +29,10 @@ The new Tag we created for you.
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-javascript-action@v1.1
+uses: actions/increment-semver-patch-and-tag-action@1.2.0
 with:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   repositoryName: ${{ github.event.repository.name }}
-  sha: ${{ github.sha }}
   repositoryOwner: ${{ github.repository_owner }}
+  sha: ${{ github.sha }}
 ```
-
-## development
-
-Don't forget to run `ncc build index.ts --license licenses.txt` before update
