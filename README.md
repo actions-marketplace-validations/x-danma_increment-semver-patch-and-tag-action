@@ -10,11 +10,15 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ### `GITHUB_TOKEN`
 
-**Required** Github Token for tag lookup and creation. No Default.
+**Required** Github Token for authentication.
 
 ### `repositoryName`
 
-**Required** Repository Name for tag lookup and creation. No Default.
+**Required** Repository Name for tag lookup.
+
+### `sha`
+
+**Required** sha id for tag creation.
 
 ## Outputs
 

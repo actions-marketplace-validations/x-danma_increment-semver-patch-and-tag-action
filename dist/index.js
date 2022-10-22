@@ -11817,6 +11817,7 @@ try {
     const nameToGreet = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('who-to-greet');
     const githubToken = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('GITHUB_TOKEN');
     const repositoryName = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('repositoryName');
+    const sha = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('sha');
     console.log(`Hello ${nameToGreet}!`);
     console.log(`repositoryName ${repositoryName}!`);
     // Octokit.js
@@ -11836,6 +11837,13 @@ try {
     const newFeatureVersion = String(Number(feature) + 1);
     const newTag = [major, minor, newFeatureVersion].join('.');
     console.log(newTag);
+    // https://docs.github.com/en/rest/git/refs#create-a-reference
+    await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
+        owner: 'OWNER',
+        repo: 'REPO',
+        ref: 'refs/heads/main',
+        sha
+    });
     const time = (new Date()).toTimeString();
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("time", time);
     // Get the JSON webhook payload for the event that triggered the workflow

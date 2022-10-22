@@ -8,6 +8,7 @@ try {
   const nameToGreet = Core.getInput('who-to-greet');
   const githubToken = Core.getInput('GITHUB_TOKEN');
   const repositoryName = Core.getInput('repositoryName');
+  const sha = Core.getInput('sha');
   console.log(`Hello ${nameToGreet}!`);
   console.log(`repositoryName ${repositoryName}!`);
 
@@ -34,6 +35,14 @@ try {
 
   console.log(newTag);
 
+  // https://docs.github.com/en/rest/git/refs#create-a-reference
+
+  await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
+    owner: 'OWNER',
+    repo: 'REPO',
+    ref: 'refs/heads/main',
+    sha
+  })
   const time = (new Date()).toTimeString();
   Core.setOutput("time", time);
 
