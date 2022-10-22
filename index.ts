@@ -33,18 +33,23 @@ try {
 
   const newTag = [major, minor, newFeatureVersion].join('.')
 
-  console.log(newTag);
+  console.log('newTag:', newTag);
+
+  const time = (new Date()).toTimeString();
+  Core.setOutput("time", time);
 
   // https://docs.github.com/en/rest/git/refs#create-a-reference
 
-  await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
-    owner: 'OWNER',
-    repo: 'REPO',
-    ref: 'refs/heads/main',
-    sha
+  const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/tags', {
+    owner: 'x-danma',
+    repo: repositoryName,
+    tag: newTag,
+    message: 'Autobump feature version',
+    object: sha,
+    type: 'commit'
   })
-  const time = (new Date()).toTimeString();
-  Core.setOutput("time", time);
+
+  console.log('new Tag was created, response:', createTagResponse);
 
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(Github.context.payload, undefined, 2)

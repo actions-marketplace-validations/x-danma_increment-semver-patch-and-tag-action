@@ -11836,16 +11836,19 @@ try {
     const feature = firstTag[2];
     const newFeatureVersion = String(Number(feature) + 1);
     const newTag = [major, minor, newFeatureVersion].join('.');
-    console.log(newTag);
-    // https://docs.github.com/en/rest/git/refs#create-a-reference
-    await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
-        owner: 'OWNER',
-        repo: 'REPO',
-        ref: 'refs/heads/main',
-        sha
-    });
+    console.log('newTag:', newTag);
     const time = (new Date()).toTimeString();
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("time", time);
+    // https://docs.github.com/en/rest/git/refs#create-a-reference
+    const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/tags', {
+        owner: 'x-danma',
+        repo: repositoryName,
+        tag: newTag,
+        message: 'Autobump feature version',
+        object: sha,
+        type: 'commit'
+    });
+    console.log('new Tag was created, response:', createTagResponse);
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload, undefined, 2);
     console.log(`The event payload: ${payload}`);
