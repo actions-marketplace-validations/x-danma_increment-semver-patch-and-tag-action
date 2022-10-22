@@ -1,10 +1,6 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Autobump patch version and tag'
+description: 'Takes repo sha and creates a new tag with increased patch version. Excepts SemVer X.Y.Z'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
   GITHUB_TOKEN:  # id of input
     description: 'Github Token for authentication'
     required: true

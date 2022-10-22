@@ -4,10 +4,6 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Inputs
 
-### `who-to-greet`
-
-**Required** The name of the person to greet. Default `"World"`.
-
 ### `GITHUB_TOKEN`
 
 **Required** Github Token for authentication.
@@ -26,16 +22,15 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Outputs
 
-### `time`
+### `newTag`
 
-The time we greeted you.
+The new Tag we created for you.
 
 ## Example usage
 
 ```yaml
 uses: actions/hello-world-javascript-action@v1.1
 with:
-  who-to-greet: 'Mona the Octocat'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   repositoryName: ${{ github.event.repository.name }}
   sha: ${{ github.sha }}
