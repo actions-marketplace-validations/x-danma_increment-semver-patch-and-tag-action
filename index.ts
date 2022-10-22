@@ -18,11 +18,21 @@ try {
   });
 
   const tokens = await octokit.rest.repos.listTags({
-    owner : 'x-danma',
-    repo : repositoryName
+    owner: 'x-danma',
+    repo: repositoryName
   })
+  const firstTag = tokens.data[0].name.split('.');
+  console.log(firstTag);
 
-  console.log(tokens);
+  const major = firstTag[0];
+  const minor = firstTag[1];
+  const feature = firstTag[2];
+
+  const newFeatureVersion = String(Number(feature) + 1)
+
+  const newTag = [major, minor, newFeatureVersion].join('.')
+
+  console.log(newTag);
 
   const time = (new Date()).toTimeString();
   Core.setOutput("time", time);

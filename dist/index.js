@@ -11828,7 +11828,14 @@ try {
         owner: 'x-danma',
         repo: repositoryName
     });
-    console.log(tokens);
+    const firstTag = tokens.data[0].name.split('.');
+    console.log(firstTag);
+    const major = firstTag[0];
+    const minor = firstTag[1];
+    const feature = firstTag[2];
+    const newFeatureVersion = String(Number(feature) + 1);
+    const newTag = [major, minor, newFeatureVersion].join('.');
+    console.log(newTag);
     const time = (new Date()).toTimeString();
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("time", time);
     // Get the JSON webhook payload for the event that triggered the workflow
