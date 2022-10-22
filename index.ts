@@ -40,13 +40,11 @@ try {
 
   // https://docs.github.com/en/rest/git/refs#create-a-reference
 
-  const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/tags', {
+  const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
     owner: 'x-danma',
     repo: repositoryName,
-    tag: newTag,
-    message: 'Autobump feature version',
-    object: sha,
-    type: 'commit'
+    ref: `refs/tags/${newTag}`,
+    sha
   })
 
   console.log('new Tag was created, response:', createTagResponse);
