@@ -11,16 +11,16 @@ try {
 
   // Octokit.js
   // https://github.com/octokit/core.js#readme
-  const octokit = new Octokit({
-    auth: githubToken
-  });
+  // const octokit = new Octokit({
+  //   auth: githubToken
+  // });
 
-  const tokens = Promise.resolve(octokit.request('GET /repos/{owner}/{repo}/tags', {
-    owner: 'OWNER',
-    repo: 'REPO'
-  }))
+  // const tokens = Promise.resolve(octokit.request('GET /repos/{owner}/{repo}/tags', {
+  //   owner: 'OWNER',
+  //   repo: 'REPO'
+  // }))
   
-  console.log(tokens);
+  // console.log(tokens);
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
