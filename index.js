@@ -6,8 +6,9 @@ try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   const githubToken = core.getInput('GITHUB_TOKEN');
-  const repoName = core.getInput('repoName');
+  const repositoryName = core.getInput('repositoryName');
   console.log(`Hello ${nameToGreet}!`);
+  console.log(`repositoryName ${repositoryName}!`);
 
   // Octokit.js
   // https://github.com/octokit/core.js#readme
