@@ -36,8 +36,12 @@ The time we greeted you.
 uses: actions/hello-world-javascript-action@v1.1
 with:
   who-to-greet: 'Mona the Octocat'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  repositoryName: ${{ github.event.repository.name }}
+  sha: ${{ github.sha }}
+  repositoryOwner: ${{ github.repository_owner }}
 ```
 
 ## development
 
-Don't forget to run `ncc build index.ts --license licenses.txt`
+Don't forget to run `ncc build index.ts --license licenses.txt` before update
