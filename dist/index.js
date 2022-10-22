@@ -9507,6 +9507,14 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 4049:
+/***/ ((module) => {
+
+module.exports = eval("require")("@octokit/rest");
+
+
+/***/ }),
+
 /***/ 6593:
 /***/ ((module) => {
 
@@ -9684,23 +9692,29 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const core = __nccwpck_require__(125);
-const github = __nccwpck_require__(8689);
+const {core} = __nccwpck_require__(125);
+const {github} = __nccwpck_require__(8689);
+const {Octokit} = __nccwpck_require__(4049);
 
 try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
+  const githubToken = core.getInput('GITHUB_TOKEN');
+  const repoName = core.getInput('repoName');
   console.log(`Hello ${nameToGreet}!`);
 
-  const ref = core.getInput('ref') 
-  const tagName = core.getInput('tag-name')
-  const tag = core.getInput("tag")
+  // Octokit.js
+  // https://github.com/octokit/core.js#readme
+  const octokit = new Octokit({
+    auth: githubToken
+  });
+
+  const tokens = octokit.repos.listTags;
+  console.log(tokens);
   
-  console.log(`Ref : ${ref}!`);
-  console.log(`tagName : ${tagName}!`);
-  console.log(`tag : ${tag}!`);
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
+
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
