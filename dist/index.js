@@ -11990,9 +11990,13 @@ try {
     auth: githubToken
   });
 
-  const tokens = octokit.repos.listTags;
-  console.log(tokens);
+  const tokens = Promise.resolve(octokit.request('GET /repos/{owner}/{repo}/tags', {
+    owner: 'OWNER',
+    repo: 'REPO'
+  }))
   
+  console.log(tokens);
+
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
 
