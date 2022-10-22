@@ -1,5 +1,8 @@
 name: 'Autobump patch version and tag'
 description: 'Takes repo sha and creates a new tag with increased patch version. Excepts SemVer X.Y.Z'
+branding:
+  icon: 'play'
+  color: 'purple'
 inputs:
   GITHUB_TOKEN:  # id of input
     description: 'Github Token for authentication'
