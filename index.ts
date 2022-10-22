@@ -17,7 +17,7 @@ try {
     auth: githubToken
   });
 
-  const tokens = octokit.rest.repos.listTags({
+  const tokens = await octokit.rest.repos.listTags({
     owner : 'x-danma',
     repo : repositoryName
   })
