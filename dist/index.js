@@ -11817,6 +11817,7 @@ try {
     const nameToGreet = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('who-to-greet');
     const githubToken = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('GITHUB_TOKEN');
     const repositoryName = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('repositoryName');
+    const repositoryOwner = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('owner');
     const sha = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('sha');
     console.log(`Hello ${nameToGreet}!`);
     console.log(`repositoryName ${repositoryName}!`);
@@ -11826,7 +11827,7 @@ try {
         auth: githubToken
     });
     const tokens = await octokit.rest.repos.listTags({
-        owner: 'x-danma',
+        owner: repositoryOwner,
         repo: repositoryName
     });
     console.log("tokens:", tokens);
@@ -11842,7 +11843,7 @@ try {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("time", time);
     // https://docs.github.com/en/rest/git/refs#create-a-reference
     const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
-        owner: 'x-danma',
+        owner: repositoryOwner,
         repo: repositoryName,
         ref: `refs/tags/${newTag}`,
         sha

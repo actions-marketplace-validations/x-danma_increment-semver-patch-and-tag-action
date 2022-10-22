@@ -11,9 +11,13 @@ inputs:
   repositoryName: # id of input
     description: 'Repository Name for tag lookup'
     required: true
+  repositoryOwner: # id of input
+    description: 'owner of the repository'
+    required: true
   sha: # id of input
     description: 'sha id for tag creation'
     required: true
+
 outputs:
   time: # id of output
     description: 'The time we greeted you'

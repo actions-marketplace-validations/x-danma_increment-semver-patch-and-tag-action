@@ -16,6 +16,10 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 **Required** Repository Name for tag lookup.
 
+### `repositoryOwner`
+
+**Required** Repository Owner for tag lookup.
+
 ### `sha`
 
 **Required** sha id for tag creation.

@@ -8,6 +8,7 @@ try {
   const nameToGreet = Core.getInput('who-to-greet');
   const githubToken = Core.getInput('GITHUB_TOKEN');
   const repositoryName = Core.getInput('repositoryName');
+  const repositoryOwner = Core.getInput('owner');
   const sha = Core.getInput('sha');
   console.log(`Hello ${nameToGreet}!`);
   console.log(`repositoryName ${repositoryName}!`);
@@ -19,7 +20,7 @@ try {
   });
 
   const tokens = await octokit.rest.repos.listTags({
-    owner: 'x-danma',
+    owner: repositoryOwner,
     repo: repositoryName
   })
   console.log("tokens:" ,tokens);
@@ -43,7 +44,7 @@ try {
   // https://docs.github.com/en/rest/git/refs#create-a-reference
 
   const createTagResponse = await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
-    owner: 'x-danma',
+    owner: repositoryOwner,
     repo: repositoryName,
     ref: `refs/tags/${newTag}`,
     sha
