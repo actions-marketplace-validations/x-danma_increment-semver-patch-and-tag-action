@@ -8,6 +8,10 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 **Required** The name of the person to greet. Default `"World"`.
 
+### `GITHUB_TOKEN`
+
+**Required** Github Token for tag lookup and creation. No Default.
+
 ## Outputs
 
 ### `time`
