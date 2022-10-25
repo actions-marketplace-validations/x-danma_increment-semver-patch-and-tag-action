@@ -29,7 +29,7 @@ jobs:
         echo hello
 
   hello_world_job:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     name: A job to say hello
     steps:
       - uses: actions/checkout@v3
