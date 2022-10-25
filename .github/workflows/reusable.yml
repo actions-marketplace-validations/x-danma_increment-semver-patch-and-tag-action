@@ -1,27 +1,12 @@
-on: [push]
+on:
+  workflow_call:
+    inputs:
+        config-path:
+          required: true
+          type: string
 
 jobs:
-  autoBump_tag:
-    runs-on: ubuntu-latest
-    name: A job to increment tag
-    steps:
-      # To use this repository's private action,
-      # you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Increment SemVer Patch Version and Tag
-        uses: ./ # Uses an action in the root directory
-        id: createTag
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          repositoryName: ${{ github.event.repository.name }}
-          sha: ${{ github.sha }}
-          repositoryOwner: ${{ github.repository_owner }}
-      # Use the output from the `createTag` step
-      - name: Get the output tag
-        run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
-  
-  job-c:
+  job-a:
     name: job-c
     runs-on: ubuntu-latest
     steps:
