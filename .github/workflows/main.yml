@@ -20,3 +20,55 @@ jobs:
       # Use the output from the `createTag` step
       - name: Get the output tag
         run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
+  
+  deploy_dev-preview:
+    needs: autoBump_tag
+    runs-on: windows-latest
+    name: deploy_dev-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+  
+  deploy_dev:
+    needs: autoBump_tag
+    runs-on: windows-latest
+    name: deploy_dev
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  deploy_prod-preview:
+    needs: autoBump_tag
+    runs-on: windows-latest
+    name: deploy_prod-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  deploy_prod:
+    needs: autoBump_tag
+    runs-on: windows-latest
+    name: deploy_prod
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
