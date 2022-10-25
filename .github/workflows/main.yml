@@ -36,7 +36,7 @@ jobs:
   
   deploy_dev:
     environment: dev
-    needs: autoBump_tag
+    needs: deploy_dev-preview
     runs-on: windows-latest
     name: deploy_dev
     steps:
@@ -49,8 +49,7 @@ jobs:
         shell: bash
 
   deploy_prod-preview:
-    environment: dev
-    needs: autoBump_tag
+    needs: deploy_dev
     runs-on: windows-latest
     name: deploy_prod-preview
     steps:
@@ -63,7 +62,8 @@ jobs:
         shell: bash
 
   deploy_prod:
-    needs: autoBump_tag
+    environment: prod
+    needs: deploy_prod-preview
     runs-on: windows-latest
     name: deploy_prod
     steps:
