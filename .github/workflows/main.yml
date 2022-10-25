@@ -50,7 +50,7 @@ jobs:
 
   deploy_prod-preview:
     environment: dev
-    needs: autoBump_tag
+    needs: deploy_dev
     runs-on: windows-latest
     name: deploy_prod-preview
     steps:
