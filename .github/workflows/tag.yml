@@ -4,9 +4,9 @@ on:
       - '*'
 
 jobs:
-  hello_world_job:
+  deploy_dev-preview:
     runs-on: windows-latest
-    name: A job to say hello
+    name: deploy_dev-preview
     steps:
       - uses: actions/checkout@v3
       - id: foo
@@ -16,9 +16,9 @@ jobs:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
   
-  hello_world_job:
+  deploy_dev:
     runs-on: windows-latest
-    name: A job to say hello
+    name: deploy_dev
     steps:
       - uses: actions/checkout@v3
       - id: foo
@@ -28,9 +28,9 @@ jobs:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
 
-  hello_world_job:
+  deploy_prod-preview:
     runs-on: windows-latest
-    name: A job to say hello
+    name: deploy_prod-preview
     steps:
       - uses: actions/checkout@v3
       - id: foo
@@ -40,9 +40,9 @@ jobs:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
 
-  hello_world_job:
+  deploy_prod:
     runs-on: windows-latest
-    name: A job to say hello
+    name: deploy_prod
     steps:
       - uses: actions/checkout@v3
       - id: foo
