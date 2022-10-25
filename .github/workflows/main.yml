@@ -58,8 +58,15 @@ jobs:
       - name: Get the output tag
         run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
   
+  push_artifacts:
+    runs-on: ubuntu-latest
+    name: push artifacts
+    steps:
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+  
   deploy_dev-preview:
-    needs: autoBump_tag
+    needs: push_artifacts
     runs-on: windows-latest
     name: deploy_dev-preview
     steps:
