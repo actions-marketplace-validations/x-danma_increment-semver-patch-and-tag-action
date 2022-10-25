@@ -43,7 +43,7 @@ jobs:
 
   job-d-reusable:
     name: job-d
-    need: hello_world_job
+    needs: hello_world_job
     uses: x-danma/increment-semver-patch-and-tag-action/.github/workflows/reusable.yml@main
     with:
       config-path: .github/labeler.yml
