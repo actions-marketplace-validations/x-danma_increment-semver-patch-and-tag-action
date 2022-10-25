@@ -1,7 +1,44 @@
 on: [push]
 
 jobs:
+  test1:
+    runs-on: windows-latest
+    name: deploy_dev-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  test2:
+    runs-on: windows-latest
+    name: deploy_dev-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  test3:
+    runs-on: windows-latest
+    name: deploy_dev-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
   autoBump_tag:
+    needs: [test1, test2, test3]
     name: create new tag
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +65,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: x-danma/hello-world-composite-action@1.0.3
+        uses: x-danma/hello-world-composite-action@1.0.4
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
@@ -42,7 +79,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: x-danma/hello-world-composite-action@1.0.3
+        uses: x-danma/hello-world-composite-action@1.0.4
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
@@ -55,7 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: x-danma/hello-world-composite-action@1.0.3
+        uses: x-danma/hello-world-composite-action@1.0.4
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
@@ -69,7 +106,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: x-danma/hello-world-composite-action@1.0.3
+        uses: x-danma/hello-world-composite-action@1.0.4
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
