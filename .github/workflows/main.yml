@@ -3,7 +3,6 @@ on: [push]
 jobs:
   autoBump_tag:
     runs-on: ubuntu-latest
-    name: A job to increment tag
     steps:
       # To use this repository's private action,
       # you must check out the repository
