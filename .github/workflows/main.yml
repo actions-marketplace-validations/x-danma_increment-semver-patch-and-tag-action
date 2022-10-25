@@ -35,6 +35,7 @@ jobs:
         shell: bash
   
   deploy_dev:
+    environment: dev
     needs: autoBump_tag
     runs-on: windows-latest
     name: deploy_dev
