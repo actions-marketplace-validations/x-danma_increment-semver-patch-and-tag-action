@@ -1,0 +1,177 @@
+on: [push]
+
+jobs:
+  test1:
+    runs-on: windows-latest
+    name: test1
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  test2:
+    runs-on: windows-latest
+    name: test2
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'test1'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  test3:
+    runs-on: windows-latest
+    name: test3
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  autoBump_tag:
+    needs: [test1, test2, test3]
+    name: create new tag
+    runs-on: ubuntu-latest
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Increment SemVer Patch Version and Tag
+        uses: ./ # Uses an action in the root directory
+        id: createTag
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          repositoryName: ${{ github.event.repository.name }}
+          sha: ${{ github.sha }}
+          repositoryOwner: ${{ github.repository_owner }}
+      # Use the output from the `createTag` step
+      - name: Get the output tag
+        run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
+  
+  push_artifacts:
+    runs-on: ubuntu-latest
+    name: push artifacts
+    steps:
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+  
+  deploy_dev-preview:
+    needs: push_artifacts
+    runs-on: windows-latest
+    name: deploy_dev-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+  
+  deploy_dev:
+    environment: dev
+    needs: deploy_dev-preview
+    runs-on: windows-latest
+    name: deploy_dev
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  deploy_qa-preview:
+    environment: dev
+    needs: deploy_dev-preview
+    runs-on: windows-latest
+    name: deploy_qa-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  deploy_qa:
+    environment: dev
+    needs: deploy_qa-preview
+    runs-on: windows-latest
+    name: deploy_qa
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+        
+  deploy_at-preview:
+    environment: dev
+    needs: deploy_qa-preview
+    runs-on: windows-latest
+    name: deploy_at-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  deploy_at:
+    environment: dev
+    needs: deploy_at-preview
+    runs-on: windows-latest
+    name: deploy_at
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+        
+  deploy_prod-preview:
+    environment: dev
+    needs: deploy_at-preview
+    runs-on: windows-latest
+    name: deploy_prod-preview
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  deploy_prod:
+    environment: prod
+    needs: deploy_prod-preview
+    runs-on: windows-latest
+    name: deploy_prod
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
