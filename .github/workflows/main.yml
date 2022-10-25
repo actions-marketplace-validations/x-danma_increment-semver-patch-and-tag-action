@@ -20,3 +20,11 @@ jobs:
       # Use the output from the `createTag` step
       - name: Get the output tag
         run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
+  
+  job-c:
+    name: job-c
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print something
+      run: |
+        echo hello
