@@ -59,6 +59,7 @@ jobs:
         run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
   
   push_artifacts:
+    needs: autoBump_tag
     runs-on: ubuntu-latest
     name: push artifacts
     steps:
