@@ -49,6 +49,7 @@ jobs:
         shell: bash
 
   deploy_prod-preview:
+    environment: dev
     needs: autoBump_tag
     runs-on: windows-latest
     name: deploy_prod-preview
