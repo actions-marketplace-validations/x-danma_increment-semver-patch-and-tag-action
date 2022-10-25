@@ -2,6 +2,7 @@ on: [push]
 
 jobs:
   autoBump_tag:
+    name: job-a
     runs-on: ubuntu-latest
     steps:
       # To use this repository's private action,
@@ -21,6 +22,7 @@ jobs:
         run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
   
   job-c:
+    name: job-c
     runs-on: ubuntu-latest
     steps:
     - name: Print something
@@ -29,6 +31,7 @@ jobs:
 
   hello_world_job:
     runs-on: windows-latest
+    name: A job to say hello
     steps:
       - uses: actions/checkout@v3
       - id: foo
@@ -39,6 +42,8 @@ jobs:
         shell: bash
 
   job-d-reusable:
+    name: job-d
+    need: hello_world_job
     uses: x-danma/increment-semver-patch-and-tag-action/.github/workflows/reusable.yml@main
     with:
       config-path: .github/labeler.yml
