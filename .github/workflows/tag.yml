@@ -1,0 +1,53 @@
+on:
+  push:
+    tags:
+      - *
+
+jobs:
+  hello_world_job:
+    runs-on: windows-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+  
+  hello_world_job:
+    runs-on: windows-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  hello_world_job:
+    runs-on: windows-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
+  hello_world_job:
+    runs-on: windows-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: x-danma/hello-world-composite-action@1.0.3
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
