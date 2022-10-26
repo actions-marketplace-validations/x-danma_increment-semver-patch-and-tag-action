@@ -58,16 +58,16 @@ jobs:
       - name: Get the output tag
         run: echo "The tag was ${{ steps.createTag.outputs.newTag }}"
   
-  push_artifacts:
+  push_artifacts-dev:
     needs: autoBump_tag
     runs-on: ubuntu-latest
-    name: push artifacts
+    name: build and push dev-artifacts
     steps:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
   
   deploy_dev-preview:
-    needs: push_artifacts
+    needs: push_artifacts-dev
     runs-on: windows-latest
     name: deploy_dev-preview
     steps:
@@ -76,6 +76,15 @@ jobs:
         uses: x-danma/hello-world-composite-action@1.0.3
         with:
           who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+  
+  push_artifacts-prod:
+    environment: dev
+    needs: deploy_dev-preview
+    runs-on: ubuntu-latest
+    name: build and push prod-artifacts
+    steps:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
   
@@ -93,9 +102,9 @@ jobs:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
 
+
   deploy_prod-preview:
-    environment: dev
-    needs: deploy_dev-preview
+    needs: push_artifacts-prod
     runs-on: windows-latest
     name: deploy_prod-preview
     steps:
