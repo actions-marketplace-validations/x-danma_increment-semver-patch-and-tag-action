@@ -41,6 +41,8 @@ jobs:
     needs: [test1, test2, test3]
     name: create new tag
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.createTag.outputs.newTag }}
     steps:
       # To use this repository's private action,
       # you must check out the repository
@@ -61,7 +63,7 @@ jobs:
   push_artifacts-dev:
     needs: autoBump_tag
     runs-on: ubuntu-latest
-    name: build and push dev-artifacts
+    name: ${{needs.autoBump_tag.outputs.tag}} build and push dev-artifacts
     steps:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
