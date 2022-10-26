@@ -118,7 +118,7 @@ jobs:
 
   deploy_prod:
     environment: prod
-    needs: deploy_prod-preview
+    needs: [deploy_prod-preview, push_artifacts-prod]
     runs-on: windows-latest
     name: deploy_prod
     steps:
