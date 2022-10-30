@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+    branches:
+      - test
 
 jobs:
   test1:
