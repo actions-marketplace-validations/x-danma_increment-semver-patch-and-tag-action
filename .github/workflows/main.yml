@@ -58,7 +58,7 @@ jobs:
   push_artifacts-dev:
     needs: autoBump_tag
     runs-on: ubuntu-latest
-    name: ${{autoBump_tag.outputs.tag}} build and push dev-artifacts
+    name: ${{jobs.autoBump_tag.outputs.tag}} build and push dev-artifacts
     steps:
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
